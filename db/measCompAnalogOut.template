@@ -14,7 +14,10 @@ record(ao,"$(P)$(R)") {
     field(PREC, "$(PREC)")
     field(LINR, "LINEAR")
     field(VAL,  "$(VAL)")
+    field(DOL, "$(DOL)")
+    field(SCAN, ".1 second")
 }
+
 
 # Note: the driver constructs these enum fields based on model.
 record(mbbo,"$(P)$(R)Range")

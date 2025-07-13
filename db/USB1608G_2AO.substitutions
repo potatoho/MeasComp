@@ -50,8 +50,8 @@ file "$(MEASCOMP)/db/measCompBinaryDir.template"
 pattern
 { R,   MASK,  VAL, ADDR}
 {Bd1,  0x01    1,     0}
-{Bd2,  0x02    0,     0}
-{Bd3,  0x04    0,     0}
+{Bd2,  0x02    1,     0}
+{Bd3,  0x04    1,     0}
 {Bd4,  0x08    0,     0}
 {Bd5,  0x10    1,     0}
 {Bd6,  0x20    1,     0}
@@ -124,9 +124,9 @@ pattern
 file "$(MEASCOMP)/db/measCompAnalogOut.template"
 {
 pattern
-{ R,   VAL, ADDR, EGUL, DRVL, LOPR, EGUF, DRVH, HOPR, PREC}
-{Ao1,   0,    0,  -10., -10., -10.,  10.,  10.,  10.,    4}
-{Ao2,   0,    1,  -10., -10., -10.,  10.,  10.,  10.,    4}
+{ R,   VAL, ADDR, EGUL, DRVL, LOPR, EGUF, DRVH, HOPR, PREC, DOL}
+{Ao1,   0,    0,  -10., -10., -10.,  10.,  10.,  10.,    4, "" }
+{Ao2,   0,    1,  -10., -10., -10.,  10.,  10.,  10.,    4, USB1608G_2AO:Counter1CountsoutCalc}
 }
 
 # Waveform generator
@@ -156,5 +156,14 @@ file "$(MEASCOMP)/db/mytemp.template"
 {
 pattern
 { R, Bo }
-{ Ai1,   Bo1}
+{ Ai1,   Bo1 }
 }
+
+
+file "$(MEASCOMP)/db/counttemp.template"
+{
+pattern
+{ R, Bo, Bo2, Bo3 }
+{ Counter1Counts, Bo2, Bo3, Ao2}
+}
+

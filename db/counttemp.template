@@ -1,0 +1,31 @@
+record(calcout, "$(P)$(R)IsMod0"){
+    field(INPA, "$(P)$(R).VAL NPP")
+    field(CALC, "(A%3) = 0")
+    field(OUT, "$(P)$(Bo)")
+    field(OOPT, "Every Time")
+    field(SCAN, ".1 second")
+}
+
+record(calcout, "$(P)$(R)IsNotMod0") {
+    field(INPA, "$(P)$(R).VAL NPP")
+    field(CALC, "(A % 3) != 0")
+    field(OUT, "$(P)$(Bo2)")
+    field(OOPT, "Every Time")
+    field(SCAN, ".1 second")
+}
+
+record(calcout, "$(P)$(R)Calc") {
+    field(INPA, "$(P)$(R).VAL NPP")
+    field(CALC, "A % 3")
+    field(OOPT, "Every Time")
+    field(SCAN, ".1 second")
+}
+
+record(calcout, "$(P)$(R)outCalc") {
+    field(PINI, "YES")
+    field(INPA, "$(P)$(R).VAL NPP")
+    field(CALC, "A * 0.1")
+    field(OUT, "$(P)$(Bo3)")
+    field(OOPT, "Every Time")
+    field(SCAN, ".1 second")
+}
