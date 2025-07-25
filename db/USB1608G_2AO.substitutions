@@ -33,7 +33,7 @@ file "$(MEASCOMP)/db/measCompBinaryOut.template"
 {
 pattern
 { R,   MASK, ADDR, DOL}
-{Bo1,  0x01     0, USB1608G_2AO:Ai1Calc}
+{Bo1,  0x01     0, ""}
 {Bo2,  0x02     0, ""}
 {Bo3,  0x04     0, ""}
 {Bo4,  0x08     0, ""}
@@ -86,15 +86,15 @@ pattern
 file "$(MEASCOMP)/db/measCompAnalogIn.template"
 {
 pattern
-{  R, ADDR, EGUL, LOPR, EGUF, HOPR,  RANGE,   SCAN,   PREC}
-{Ai1,   0,  -10., -10.,  10.,  10.,    0,  "1 second",   4}
-{Ai2,   1,  -10., -10.,  10.,  10.,    0,  "1 second",   4}
-{Ai3,   2,   -5.,  -5.,   5.,   5.,    0,  "1 second",   4}
-{Ai4,   3,   -5.,  -5.,   5.,   5.,    0,  "1 second",   4}
-{Ai5,   4,   -2.,  -2.,   2.,   2.,    0,  "1 second",   4}
-{Ai6,   5,   -2.,  -2.,   2.,   2.,    0,  "1 second",   4}
-{Ai7,   6,   -1.,  -1.,   1.,   1.,    0,  "1 second",   4}
-{Ai8,   7,   -1.,  -1.,   1.,   1.,    0,  "1 second",   4}
+{  R, ADDR, EGUL, LOPR, EGUF, HOPR,  RANGE,   PREC}
+{Ai1,   0,  -10., -10.,  10.,  10.,    0,     4}
+{Ai2,   1,  -10., -10.,  10.,  10.,    0,     4}
+{Ai3,   2,   -5.,  -5.,   5.,   5.,    0,     4}
+{Ai4,   3,   -5.,  -5.,   5.,   5.,    0,     4}
+{Ai5,   4,   -2.,  -2.,   2.,   2.,    0,     4}
+{Ai6,   5,   -2.,  -2.,   2.,   2.,    0,     4}
+{Ai7,   6,   -1.,  -1.,   1.,   1.,    0,     4}
+{Ai8,   7,   -1.,  -1.,   1.,   1.,    0,     4}
 }
 
 # Waveform digitzer
@@ -126,7 +126,7 @@ file "$(MEASCOMP)/db/measCompAnalogOut.template"
 pattern
 { R,   VAL, ADDR, EGUL, DRVL, LOPR, EGUF, DRVH, HOPR, PREC, DOL}
 {Ao1,   0,    0,  -10., -10., -10.,  10.,  10.,  10.,    4, "" }
-{Ao2,   0,    1,  -10., -10., -10.,  10.,  10.,  10.,    4, USB1608G_2AO:Counter1CountsoutCalc}
+{Ao2,   0,    1,  -10., -10., -10.,  10.,  10.,  10.,    4, ""}
 }
 
 # Waveform generator
@@ -150,20 +150,5 @@ file "$(MEASCOMP)/db/measCompTrigger.template"
 pattern
 {  R,   ADDR}
 {Trig,     0}
-}
-
-file "$(MEASCOMP)/db/mytemp.template"
-{
-pattern
-{ R, Bo }
-{ Ai1,   Bo1 }
-}
-
-
-file "$(MEASCOMP)/db/counttemp.template"
-{
-pattern
-{ R, Bo, Bo2, Bo3 }
-{ Counter1Counts, Bo2, Bo3, Ao2}
 }
 

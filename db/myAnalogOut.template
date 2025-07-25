@@ -1,0 +1,11 @@
+record(ao, "$(P)$(R)") {
+    field(DESC, "Analog Output")
+    field(DTYP, "asynInt32")
+    field(OUT,  "@asyn($(PORT) $(ADDR))ANALOG_OUT_VALUE")
+    field(PREC, "0") 
+    field(DRVH, "10") 
+    field(DRVL, "-10")   
+    field(EGUL, "-10")
+    field(EGUF, "10")
+    field(PINI, "NO")        
+}

@@ -1,0 +1,8 @@
+record(ai, "$(P)$(R)")
+{
+ field(DESC, "Analog Input Channel")
+ field(DTYP, "asynInt32")
+ field(SCAN, ".1 second")
+ field(INP, "@asyn($(PORT), $(ADDR))ANALOG_IN_VALUE")
+ field(PREC, "0")
+}

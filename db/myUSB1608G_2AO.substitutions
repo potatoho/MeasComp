@@ -1,0 +1,76 @@
+file "$(MEASCOMP)/db/myAnalogIn.template"
+{
+pattern
+{ R, ADDR }
+{Ai1,0}
+{Ai2, 1}
+{Ai3, 2}
+{Ai4, 3}
+{Ai5, 4}
+{Ai6, 5}
+{Ai7, 6}
+{Ai8, 7}
+}
+
+
+file "$(MEASCOMP)/db/myAnalogOut.template"
+{
+pattern
+{R, ADDR}
+{Ao1, 0}
+{Ao2, 1}
+}
+
+
+
+
+file "$(MEASCOMP)/db/myDigitalDir.template"
+{
+pattern
+{R, ADDR, MASK, VAL}
+{Bd1, 0, 0x01, 1}
+{Bd2, 0, 0x02, 1}
+{Bd3, 0, 0x04, 1}
+{Bd4, 0, 0x08, 0}
+{Bd5, 0, 0x10, 0}
+{Bd6, 0, 0x20, 0}
+{Bd7, 0, 0x40, 0}
+{Bd8, 0, 0x80, 0}
+}
+
+file "$(MEASCOMP)/db/myDigitalIn.template"
+{
+pattern
+{R, ADDR, MASK}
+{Bi1, 0, 0x01}
+{Bi2, 0, 0x02}
+{Bi3, 0, 0x04}
+{Bi4, 0, 0x08}
+{Bi5, 0, 0x10}
+{Bi6, 0, 0x20}
+{Bi7, 0, 0x40}
+{Bi8, 0, 0x80}
+}
+
+
+file "$(MEASCOMP)/db/myDigitalOut.template"
+{
+pattern
+{R, ADDR, MASK}
+{Bo1, 0, 0x01}
+{Bo2, 0, 0x02}
+{Bo3, 0, 0x04}
+{Bo4, 0, 0x08}
+{Bo5, 0, 0x10}
+{Bo6, 0, 0x20}
+{Bo7, 0, 0x40}
+{Bo8, 0, 0x80}
+}
+
+file "$(MEASCOMP)/db/mycounter.template"
+{
+pattern
+{R, ADDR}
+{Counter1, 0}
+{Counter2, 1}
+}

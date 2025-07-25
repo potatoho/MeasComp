@@ -1,7 +1,6 @@
 record(ai,"$(P)$(R)")
 {
-    field(SCAN, "$(SCAN)")
-    field(DTYP, "asynInt32Average")
+    field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(ADDR))ANALOG_IN_VALUE")
     field(LINR, "LINEAR")
     field(EGUF, "$(EGUF)")
@@ -9,6 +8,7 @@ record(ai,"$(P)$(R)")
     field(HOPR, "$(HOPR)")
     field(LOPR, "$(LOPR)")
     field(PREC, "$(PREC)")
+    field(SCAN, ".1 second")
 }
 
 # Note: the driver constructs these enum fields based on model.

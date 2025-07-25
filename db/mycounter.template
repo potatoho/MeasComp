@@ -2,7 +2,7 @@ record(longin, "$(P)$(R)Counts")
 {
     field(DTYP, "asynInt32")
     field(INP,  "@asyn($(PORT),$(ADDR))COUNTER_VALUE")
-    field(SCAN, ".1 second")
+    field(SCAN, "I/O Intr")
 }
 
 record(bo, "$(P)$(R)Reset")
@@ -12,4 +12,3 @@ record(bo, "$(P)$(R)Reset")
     field(OUT,  "@asyn($(PORT),$(ADDR))COUNTER_RESET")
     field(VAL,  "1")
 }
-
