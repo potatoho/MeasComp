@@ -16,6 +16,7 @@ epicsEnvSet("UNIQUE_ID",     "01D97CF8")
 #                      maxInputPoints,  # Maximum number of input points for waveform digitizer
 #                      maxOutputPoints) # Maximum number of output points for waveform generator
 MultiFunctionConfig("$(PORT)", "$(UNIQUE_ID)", $(WDIG_POINTS), $(WGEN_POINTS))
+LogicConfig("$(PORT)")
 
 #asynSetTraceMask($(PORT), -1, ERROR|FLOW|DRIVER)
 

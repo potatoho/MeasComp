@@ -34,6 +34,9 @@ measComp_SRCS += drvUSBCTR.cpp
 measComp_SRCS += measCompDiscover.cpp
 measComp_SRCS += USBCTR_SNL.st
 
+measComp_SRCS += logic.cpp
+
+
 measComp_LIBS += asyn
 measComp_LIBS += seq pv
 measComp_LIBS += $(EPICS_BASE_IOC_LIBS)

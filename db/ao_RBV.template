@@ -1,0 +1,5 @@
+record(ai, "$(P)$(R)RBV") {
+    field(DTYP, "asynInt32")
+    field(INP, "@asyn($(PORT),$(ADDR))ANALOG_OUT_VALUE")
+    field(SCAN, "I/O Intr")
+}

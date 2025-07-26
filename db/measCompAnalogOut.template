@@ -15,7 +15,7 @@ record(ao,"$(P)$(R)") {
     field(LINR, "LINEAR")
     field(VAL,  "$(VAL)")
     field(DOL, "$(DOL)")
-    field(SCAN, ".1 second")
+    field(SCAN, "Passive")
 }
 
 
@@ -67,4 +67,16 @@ record(calcout,"$(P)$(R)TweakDown") {
     field(INPB, "$(P)$(R)TweakVal.VAL  NPP MS")
     field(OUT,  "$(P)$(R).VAL  PP MS")
     field(PREC, "$(PREC)")
+}
+
+
+
+
+record(ai, "$(P)AO2_RBV") {
+    field(DESC,  "AO2 Readback Value")
+    field(DTYP,  "asynInt32")
+    field(INP,   "@asyn($(PORT),1)ANALOG_OUT_VALUE")  # 같은 파라미터 사용
+    field(SCAN,  "I/O Intr")       # 드라이버 callParamCallbacks() 시 자동 업데이트
+    field(PREC,  "3")
+    field(EGU,   "V")
 }

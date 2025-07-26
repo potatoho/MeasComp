@@ -23,7 +23,6 @@ static const char *driverName = "MultiFunction";
 #define NUM_COUNTERS 2
 #define MAX_SIGNALS NUM_ANALOG_IN
 
-// ✅ AUXPORT 사용
 #define DIGITAL_PORT AUXPORT
 
 class MultiFunction : public asynPortDriver {
@@ -86,7 +85,6 @@ MultiFunction::MultiFunction(const char *portName, const char *uniqueID)
                 daqDeviceHandle_ = ulCreateDaqDevice(devDescriptors[i]);
                 if (daqDeviceHandle_) {
                     ulConnectDaqDevice(daqDeviceHandle_);
-                    // ✅ 초기 설정: Digital Port를 INPUT으로 설정 (AUXPORT)
                     ulDConfigPort(daqDeviceHandle_, DIGITAL_PORT, DD_INPUT);
                 }
                 break;
@@ -167,64 +165,23 @@ asynStatus MultiFunction::writeUInt32Digital(asynUser *pasynUser, epicsUInt32 va
 }
 
 void MultiFunction::pollerThread() {
-    unsigned long long diValue = 0;
-    unsigned long long countVal0 = 0;
-    double analog1Val = 0.0;
-
+    unsigned long long newValue = 0, countVal = 0;
     while (1) {
         lock();
         if (daqDeviceHandle_) {
-            // === 1) Digital Input ===
-            ulDIn(daqDeviceHandle_, DIGITAL_PORT, &diValue);
-            setUIntDigitalParam(digitalInput_, (epicsUInt32)diValue, 0xFFFFFFFF);
+            ulDIn(daqDeviceHandle_, DIGITAL_PORT, &newValue);
+            setUIntDigitalParam(digitalInput_, (epicsUInt32)newValue, 0xFFFFFFFF);
 
-            // === 2) Counter 0 ===
-            if (ulCIn(daqDeviceHandle_, 0, &countVal0) == ERR_NO_ERROR) {
-                setIntegerParam(0, counterCounts_, (epicsInt32)countVal0);
-
-                // 2-1) Counter %3 → LED 제어 (BO2, BO3)
-                if (countVal0 % 3 == 0) {
-                    ulDBitOut(daqDeviceHandle_, AUXPORT, 1, 1); // BO2 HIGH
-                    ulDBitOut(daqDeviceHandle_, AUXPORT, 2, 0); // BO3 LOW
-                } else {
-                    ulDBitOut(daqDeviceHandle_, AUXPORT, 1, 0); // BO2 LOW
-                    ulDBitOut(daqDeviceHandle_, AUXPORT, 2, 1); // BO3 HIGH
-                }
-
-                // 2-2) AO2 출력 (카운터 값 ×0.1 → RAW 변환)
-                unsigned int ao2Raw = (unsigned int)(((countVal0 * 0.1) / 20.0) * 65535.0);
-                if (ao2Raw > 65535) ao2Raw = 65535;
-
-                UlError aoErr = ulAOut(daqDeviceHandle_, 1, BIP10VOLTS,
-                                       AOUT_FF_NOSCALEDATA, (double)ao2Raw);
-                if (aoErr != ERR_NO_ERROR) {
-                    char errMsg[ERR_MSG_LEN];
-                    ulGetErrMsg(aoErr, errMsg);
-                    printf("[AO2 Error] Code=%d, Msg=%s\n", aoErr, errMsg);
-                }
-            }
-
-            // === 3) AI0 → BO1 제어 ===
-            if (ulAIn(daqDeviceHandle_, 0, AI_SINGLE_ENDED, BIP10VOLTS,
-                      AIN_FF_NOSCALEDATA, &analog1Val) == ERR_NO_ERROR) {
-                if (analog1Val >= 49151) {
-                    ulDBitOut(daqDeviceHandle_, AUXPORT, 0, 1); // BO1 HIGH
-                } else {
-                    ulDBitOut(daqDeviceHandle_, AUXPORT, 0, 0); // BO1 LOW
-                }
+            for (int i = 0; i < NUM_COUNTERS; i++) {
+                ulCIn(daqDeviceHandle_, i, &countVal);
+                setIntegerParam(i, counterCounts_, (epicsInt32)countVal);
             }
         }
-
-        // === EPICS PV 업데이트 ===
-        for (int i = 0; i < MAX_SIGNALS; i++) {
-            callParamCallbacks(i);
-        }
-
+        for (int i = 0; i < MAX_SIGNALS; i++) callParamCallbacks(i);
         unlock();
         epicsThreadSleep(pollTime_);
     }
 }
-
 
 void MultiFunction::report(FILE *fp, int details) {
     fprintf(fp, "MultiFunction ULDAQ on port %s\n", this->portName);

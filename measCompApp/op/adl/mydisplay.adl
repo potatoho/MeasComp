@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=101
-		y=488
+		x=1928
+		y=517
 		width=400
 		height=400
 	}
@@ -207,7 +207,7 @@ bar {
 		height=20
 	}
 	monitor {
-		chan="USB1608G_2AO:Bo1"
+		chan="USB1608G_2AO:Bo1_RBV"
 		clr=11
 		bclr=2
 	}
@@ -500,7 +500,7 @@ bar {
 		height=20
 	}
 	monitor {
-		chan="USB1608G_2AO:Bo2"
+		chan="USB1608G_2AO:Bo2_RBV"
 		clr=11
 		bclr=2
 	}
@@ -547,7 +547,7 @@ bar {
 		height=20
 	}
 	monitor {
-		chan="USB1608G_2AO:Bo3"
+		chan="USB1608G_2AO:Bo3_RBV"
 		clr=11
 		bclr=2
 	}

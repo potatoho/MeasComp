@@ -1,3 +1,4 @@
 registrar(drvMultiFunctionRegister)
 registrar(drvUSBCTRRegister)
 registrar(USBCTR_SNLRegistrar)
+registrar(drvLogicRegister)
