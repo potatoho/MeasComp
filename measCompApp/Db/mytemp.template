@@ -1,0 +1,7 @@
+record(calcout, "$(P)$(R)Calc") {
+    field(INPA, "$(P)$(R).VAL NPP")
+    field(CALC, "A>=5")
+    field(OUT,  "$(P)$(Bo)")
+    field(OOPT, "Every Time")
+    field(SCAN, ".1 second")
+}

@@ -5,8 +5,8 @@ file {
 }
 display {
 	object {
-		x=1928
-		y=517
+		x=1514
+		y=304
 		width=400
 		height=400
 	}
@@ -603,4 +603,66 @@ text {
 		precSrc="default"
 		precDefault=1
 	}
+}
+"text update" {
+	object {
+		x=71
+		y=293
+		width=50
+		height=20
+	}
+	monitor {
+		chan="USB1608G_2AO:Ai2"
+		clr=0
+		bclr=10
+	}
+	limits {
+		loprSrc="default"
+		precSrc="default"
+		precDefault=1
+	}
+}
+rectangle {
+	object {
+		x=8
+		y=295
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=1
+	}
+	"dynamic attribute" {
+		chan="USB1608G_2AO:Ai2"
+	}
+}
+text {
+	object {
+		x=14
+		y=299
+		width=50
+		height=18
+	}
+	"basic attribute" {
+		clr=11
+	}
+	"dynamic attribute" {
+		chan="1"
+	}
+	textix="AIN2"
+}
+"shell command" {
+	object {
+		x=119
+		y=373
+		width=105
+		height=19
+	}
+	command[0] {
+		label="5"
+		name="StripTool ai2.stp &"
+	}
+	clr=14
+	bclr=4
+	label="Ai2 data"
 }

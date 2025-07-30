@@ -54,7 +54,6 @@ void LogicController::logicThread() {
             if (bo1Val != prevBo1) {
                 bo1Client_->write(bo1Val ? 0x01 : 0x00, 0x01);
                 prevBo1 = bo1Val;
-                printf("[Logic] Bo1 updated: %d (Ai1=%d)\n", bo1Val, ai1Val);
             }
         }
 

@@ -29,7 +29,7 @@ endif
 # Link locally-provided code into the support library,
 # rather than directly into the IOC application.
 
-measComp_SRCS += drvMultiFunction.cpp
+measComp_SRCS += mydrvMultiFunction.cpp
 measComp_SRCS += drvUSBCTR.cpp
 measComp_SRCS += measCompDiscover.cpp
 measComp_SRCS += USBCTR_SNL.st
